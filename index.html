@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Suivi alimentaire - Points journaliers</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Suivi alimentaire</h1>
+    <small>Max journalier 23 • Réserve hebdo 21</small>
+  </header>
+
+  <main class="container">
+    <section class="card" id="ajout-aliment">
+      <h2>Ajouter un aliment consommé</h2>
+      <div class="row">
+        <label for="aliment">Aliment :</label>
+        <select id="aliment"></select>
+      </div>
+      <div class="row">
+        <label for="quantite">Quantité (g ou unité) :</label>
+        <input type="number" id="quantite" min="1" value="100">
+      </div>
+      <div class="row">
+        <button id="ajouter-btn">Ajouter</button>
+        <button id="vider-jour" class="secondary">Vider la journée</button>
+      </div>
+    </section>
+
+    <section class="card" id="liste-consommation">
+      <h2>Aliments du jour</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aliment</th>
+              <th>Quantité</th>
+              <th>Points</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div class="row">
+        <button id="valider-journee">✅ Valider la journée</button>
+      </div>
+    </section>
+
+    <section class="card" id="resume">
+      <h2>Résumé</h2>
+      <p>Points du jour : <strong><span id="points-jour">0</span></strong> / 23</p>
+      <p>Réserve hebdomadaire restante : <strong><span id="reserve">21</span></strong></p>
+    </section>
+
+    <section class="card" id="historique">
+      <h2>Historique (7 derniers jours)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Points</th>
+              <th>Réserve restante</th>
+            </tr>
+          </thead>
+          <tbody id="historique-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="gestion-base">
+      <h2>Gérer la base alimentaire</h2>
+
+      <div class="row">
+        <input id="base-search" placeholder="Rechercher un aliment..." />
+      </div>
+
+      <div class="row form-inline">
+        <input id="base-nom" placeholder="Nom (ex: Pomme)" />
+        <input id="base-points" type="number" step="0.1" placeholder="points pour 100g" />
+        <button id="base-ajouter">Ajouter / Mettre à jour</button>
+        <button id="base-export" class="secondary">Exporter CSV</button>
+        <label class="file-btn">
+          Importer CSV
+          <input type="file" id="base-import" accept=".csv" />
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Nom</th><th>Pts/100g</th><th></th></tr>
+          </thead>
+          <tbody id="base-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="card">
+      <p>App PWA prête — installe depuis le navigateur (menu → Ajouter à l'écran d’accueil) après avoir servi via HTTPS ou localhost.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
