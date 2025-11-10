@@ -304,3 +304,34 @@ refreshSelect();
 refreshBaseTable();
 majTableau(); majResume(); majHistorique();
 
+// --- Bouton Installation Universel ---
+const universalBtn = document.createElement("button");
+universalBtn.textContent = "Installer l'application";
+universalBtn.style.position = "fixed";
+universalBtn.style.bottom = "20px";
+universalBtn.style.right = "20px";
+universalBtn.style.padding = "10px 15px";
+universalBtn.style.background = "#4CAF50";
+universalBtn.style.color = "white";
+universalBtn.style.border = "none";
+universalBtn.style.borderRadius = "8px";
+universalBtn.style.zIndex = "999";
+document.body.appendChild(universalBtn);
+
+universalBtn.addEventListener("click", () => {
+  // ✅ Android : ouvre la fenêtre native
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+    });
+  } else {
+    // ✅ iPhone ou Android sans prompt : instructions guidées
+    alert(
+"Pour installer l'application :\n\n" +
+"📌 Sur Android :\n1. Ouvre le menu (⋮)\n2. Choisis 'Ajouter à l'écran d'accueil'\n\n" +
+"📌 Sur iPhone :\n1. Touchez l'icône 'Partager'\n2. 'Ajouter à l'écran d'accueil'\n"
+    );
+  }
+});
+
