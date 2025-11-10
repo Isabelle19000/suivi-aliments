@@ -293,11 +293,12 @@ installBtn.addEventListener('click', async ()=>{
 });
 
 // ---------- Service worker registration ----------
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('service-worker.js')
-    .then(()=>console.log('SW registered'))
-    .catch(err=>console.warn('SW registration failed', err));
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("sw.js").then(() => {
+        console.log("Service Worker registered");
+    });
 }
+
 
 // ---------- Init UI ----------
 refreshSelect();
@@ -334,4 +335,5 @@ universalBtn.addEventListener("click", () => {
     );
   }
 });
+
 
